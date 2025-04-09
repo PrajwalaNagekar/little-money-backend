@@ -1,13 +1,16 @@
 import express from "express";
-import cors from "cors";
-import dbConnect from "./src/database/index.js";
-import { PORT } from "./src/config/index.js";
-import router from "./src/routes/index.js";
-
+import dotenv from "dotenv";
+import mongoose from "mongoose";
+import apiRoutes from "./src/Routes/ApiRoutes.js"
 const app = express();
 
-app.use(cors());
-app.use(express.json());
+try {
+  mongoose.connect(MONGODB_URI);
+  console.log("MongoDB Connected");
+} catch (error) {
+  console.log(error.message);
+}
+app.use("/api", apiRoutes);
 
 // app.get("/", (req, res) => {
 //   res.send("Hello Little Money!");
