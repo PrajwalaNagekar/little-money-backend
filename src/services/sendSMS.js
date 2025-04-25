@@ -41,5 +41,4 @@ const sendSMS = async (mobileNumber, message) => {
 //     "9765652199",
 //     "555555 is your OTP to complete your loan application with Little Money"
 // );
-
 export default sendSMS;

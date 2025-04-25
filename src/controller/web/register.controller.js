@@ -1,15 +1,15 @@
-import Register from "../../models/register.model.js";
+import registerModel from "../../models/register.model.js";
 
 const registerUser = async (req, res) => {
-    const { phoneNumber } = req.body;
+    const { mobileNumber } = req.body;
     
     try {
-        const existingUser = await Register.findOne({ phoneNumber });
+        const existingUser = await registerModel.findOne({ mobileNumber });
         if (existingUser) {
             return res.status(400).json({ message: "Phone number already registered" });
         }
 
-        const newUser = new Register({ phoneNumber });
+        const newUser = new registerModel({ mobileNumber });
         await newUser.save();
 
         res.status(201).json({ message: "User registered successfully", user: newUser });
